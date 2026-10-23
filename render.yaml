@@ -1,0 +1,46 @@
+services:
+  - type: worker
+    name: prefect-gersha
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python gersha.py
+    envVars:
+      - key: BALE_TOKEN
+        sync: false
+      - key: GAPGPT_API_KEY
+        sync: false
+
+  - type: worker
+    name: prefect-gpt-bale
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python GPT5_Bale_Neon_Premium_groq_fixed_config.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OWEN_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+
+  - type: worker
+    name: prefect-video-downloader
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+
+  - type: worker
+    name: prefect-khabar
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python botkhabar.py
+    envVars:
+      - key: BALE_BOT_TOKEN
+        sync: false
